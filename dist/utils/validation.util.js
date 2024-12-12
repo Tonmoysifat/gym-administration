@@ -36,4 +36,3 @@ const validateInput = (requiredFields) => {
     };
 };
 exports.validateInput = validateInput;
-//# sourceMappingURL=validation.util.js.map

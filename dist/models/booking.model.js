@@ -40,4 +40,3 @@ const bookingSchema = new mongoose_1.Schema({
     schedule: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Schedule', required: true },
 });
 exports.Booking = mongoose_1.default.model('Booking', bookingSchema);
-//# sourceMappingURL=booking.model.js.map

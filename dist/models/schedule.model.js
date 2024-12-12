@@ -43,4 +43,3 @@ const scheduleSchema = new mongoose_1.Schema({
     trainees: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'User' }],
 });
 exports.Schedule = mongoose_1.default.model('Schedule', scheduleSchema);
-//# sourceMappingURL=schedule.model.js.map

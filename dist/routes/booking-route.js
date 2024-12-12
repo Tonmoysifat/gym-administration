@@ -11,4 +11,3 @@ exports.BookingRoute = express_1.default.Router();
 exports.BookingRoute.post("/book-schedule", authenticate_1.authenticate, bookingController_1.bookClass);
 exports.BookingRoute.post("/update-trainee-profile", authenticate_1.authenticate, bookingController_1.updateTraineeProfile);
 // scheduleRoute.get("/get-schedule",getSchedules);
-//# sourceMappingURL=booking-route.js.map

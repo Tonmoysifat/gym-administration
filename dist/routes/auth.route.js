@@ -10,4 +10,3 @@ const validation_util_1 = require("../utils/validation.util");
 exports.authRoute = express_1.default.Router();
 exports.authRoute.post('/create-member', (0, validation_util_1.validateInput)(['name', 'email', 'password', 'role']), authController_1.register);
 exports.authRoute.post('/login', (0, validation_util_1.validateInput)(['email', 'password']), authController_1.login);
-//# sourceMappingURL=auth.route.js.map

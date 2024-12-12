@@ -11,4 +11,3 @@ exports.scheduleRoute = express_1.default.Router();
 exports.scheduleRoute.post("/create-schedule", authenticate_1.authenticate, scheduleController_1.createSchedule);
 exports.scheduleRoute.get("/get-schedule", scheduleController_1.getSchedules);
 exports.scheduleRoute.get("/get-schedule-trainer", authenticate_1.authenticate, scheduleController_1.getTrainerSchedules);
-//# sourceMappingURL=schedule.route.js.map

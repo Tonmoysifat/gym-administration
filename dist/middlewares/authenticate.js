@@ -25,4 +25,3 @@ const authenticate = (req, res, next) => {
     }
 };
 exports.authenticate = authenticate;
-//# sourceMappingURL=authenticate.js.map

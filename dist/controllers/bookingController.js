@@ -68,4 +68,3 @@ const updateTraineeProfile = (req, res, next) => __awaiter(void 0, void 0, void 
     }
 });
 exports.updateTraineeProfile = updateTraineeProfile;
-//# sourceMappingURL=bookingController.js.map
