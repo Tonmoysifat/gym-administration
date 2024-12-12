@@ -86,3 +86,4 @@ const getTrainerSchedules = (req, res, next) => __awaiter(void 0, void 0, void 0
     }
 });
 exports.getTrainerSchedules = getTrainerSchedules;
+//# sourceMappingURL=scheduleController.js.map
