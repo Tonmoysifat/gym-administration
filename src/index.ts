@@ -37,7 +37,7 @@ app.use("/auth",authRoute)
 app.use("/schedule",scheduleRoute)
 app.use("/booking",BookingRoute)
 
-const PORT =  2084;
+const PORT =  7094;
 app.listen(PORT,function () {
     console.log(`back-end is running on http://localhost:${PORT}`)
 })
