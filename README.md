@@ -36,12 +36,15 @@ The Gym Class Scheduling and Membership Management System is designed to streaml
 
 ## Relational Diagram
 
-![Relational Diagram](https://res.cloudinary.com/dq1vwcflq/image/upload/v1734071797/relationalD_y38qmg.png)  
+![Relational Diagram](https://res.cloudinary.com/dq1vwcflq/image/upload/v1734104747/relational-diagram_d6s3rq.png)  
 
 
 ## API Endpoints
 
-### 1. **POST /auth/create-member**
+### 1. **POST request: Create Member
+       
+       With live link: https://gym-administration.onrender.com/auth/create-member
+       In localhost: http://localhost:7094/auth/create-member
 - **Description**: Create profile for Trainer or Trainee returns a JWT token.
 - **Parameters**:
    - `email`: email (required)
@@ -50,14 +53,18 @@ The Gym Class Scheduling and Membership Management System is designed to streaml
    - `role`: Trainer | Trainee (For testing purposes add role value "Trainer" for creating Trainer profile but only admin create Trainer profile and add "Trainee" for creating Trainee profile) (required) <br>
 *For the successful request you will get a token in response, add this token to the Headers tab of the postman like token = "Your_Token""*
    
-### 2. **POST /auth/login**
+### 2. **POST request: Login
+       With live link: https://gym-administration.onrender.com/auth/login
+       In localhost: http://localhost:7094/auth/login
 - **Description**: Authenticates the user and returns a JWT token.
    - **Parameters**:
       - `email`: User email (required)
       - `password`: User password (required) <br>
         *For the successful request you will get a token in response, add this token to the Headers tab of the postman like token = "Your_Token""*
 
-### 3. **POST /schedule/create-schedule**
+### 3. **POST request: Create Schedule
+       With live link: https://gym-administration.onrender.com/schedule/create-schedule
+       In localhost: http://localhost:7094/schedule/create-schedule
 - **Description**: Allows the admin to create a new class schedule.
 - **Parameters**:
    - `date`: Class date (Use today's or a future date in YYYY-MM-DD format) (required)
@@ -65,7 +72,9 @@ The Gym Class Scheduling and Membership Management System is designed to streaml
    - `endTime`: Class time (Provide an end time exactly two hours after the start time in HH:mm format) (required)
    - `trainerId`: Trainer assigned (required)
 
-### 4. **POST /schedule/create-trainer**
+### 4. **POST request: Create Trainer
+       With live link: https://gym-administration.onrender.com/schedule/create-trainer
+       In localhost: http://localhost:7094/schedule/create-trainer
 - **Description**: Allows the admin to create a new Trainer.
 - **Parameters**:
    - `email`: email (required)
@@ -73,21 +82,29 @@ The Gym Class Scheduling and Membership Management System is designed to streaml
    - `name`: name (required)
    - `role`: "Trainer"
 
-### 5. **GET /schedule/get-schedule**
+### 5. **GET request: Get all schedule 
+       With live link: https://gym-administration.onrender.com/schedule/get-schedule
+       In localhost: http://localhost:7094/schedule/get-schedule
 - **Description**: Allows the user to see available class schedule.
 - **Parameters**: no Parameters need just make a get request
 
-### 6. **GET /schedule/get-schedule-trainer**
+### 6. **GET request: Get trainer schedule 
+       With live link: https://gym-administration.onrender.com/schedule/get-schedule-trainer
+       In localhost: http://localhost:7094/schedule/get-schedule-trainer
 - **Description**: Allows the Trainers to see class schedules assigned to them. (For this Trainer has to log in to his account with his email & password)
 - **Parameters**: no Parameters need just make a get request
 
-### 7. **POST /booking/book-schedule**
+### 7. **POST request: Booking class
+       With live link: https://gym-administration.onrender.com/booking/book-schedule
+       In localhost: http://localhost:7094/schedule/booking/book-schedule
 - **Description**: Allows a trainee to book a class if available.
 - **Parameters**:
    - `scheduleId`: ID of the class to book (required)
    - `traineeId`: ID of the respective Trainee (required)
 
-### 8. **POST /booking/update-trainee-profile**
+### 8. **POST request: Manage trainee profile
+       With live link: https://gym-administration.onrender.com/booking/update-trainee-profile
+       In localhost: http://localhost:7094/booking/update-trainee-profile
 - **Description**: Allows a trainee to update their profile.
 - **Parameters**:
    - `name`: (if needed)
