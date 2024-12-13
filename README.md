@@ -36,8 +36,8 @@ The Gym Class Scheduling and Membership Management System is designed to streaml
 
 ## Relational Diagram
 
-![Relational Diagram](./path-to-your-image.png)  
-*Link to relational diagram image if hosted elsewhere.*
+![Relational Diagram](https://res.cloudinary.com/dq1vwcflq/image/upload/v1734071797/relationalD_y38qmg.png)  
+
 
 ## API Endpoints
 
@@ -46,8 +46,8 @@ The Gym Class Scheduling and Membership Management System is designed to streaml
 - **Parameters**:
    - `email`: email (required)
    - `password`: password (required)
-   - `name`: password (required)
-   - `role`: Trainer | Trainee (For testing purposes add role value "Trainer" for creating Trainer profile and add "Trainee" for creating Trainee profile) (required) <br>
+   - `name`: name (required)
+   - `role`: Trainer | Trainee (For testing purposes add role value "Trainer" for creating Trainer profile but only admin create Trainer profile and add "Trainee" for creating Trainee profile) (required) <br>
 *For the successful request you will get a token in response, add this token to the Headers tab of the postman like token = "Your_Token""*
    
 ### 2. **POST /auth/login**
@@ -65,21 +65,29 @@ The Gym Class Scheduling and Membership Management System is designed to streaml
    - `endTime`: Class time (Provide an end time exactly two hours after the start time in HH:mm format) (required)
    - `trainerId`: Trainer assigned (required)
 
-### 4. **GET /schedule/get-schedule**
+### 4. **POST /schedule/create-trainer**
+- **Description**: Allows the admin to create a new Trainer.
+- **Parameters**:
+   - `email`: email (required)
+   - `password`: password (required)
+   - `name`: name (required)
+   - `role`: "Trainer"
+
+### 5. **GET /schedule/get-schedule**
 - **Description**: Allows the user to see available class schedule.
 - **Parameters**: no Parameters need just make a get request
 
-### 5. **GET /schedule/get-schedule-trainer**
+### 6. **GET /schedule/get-schedule-trainer**
 - **Description**: Allows the Trainers to see class schedules assigned to them. (For this Trainer has to log in to his account with his email & password)
 - **Parameters**: no Parameters need just make a get request
 
-### 6. **POST /booking/book-schedule**
+### 7. **POST /booking/book-schedule**
 - **Description**: Allows a trainee to book a class if available.
 - **Parameters**:
    - `scheduleId`: ID of the class to book (required)
    - `traineeId`: ID of the respective Trainee (required)
 
-### 7. **POST /booking/update-trainee-profile**
+### 8. **POST /booking/update-trainee-profile**
 - **Description**: Allows a trainee to update their profile.
 - **Parameters**:
    - `name`: (if needed)
@@ -93,6 +101,8 @@ The Gym Class Scheduling and Membership Management System is designed to streaml
 - booking.model.ts.   (For storing booking information)
 
 ### Admin Credentials
+ **POST /auth/login** <br>
+Please just login with this api end point for admin permission
 - email: "admin@gmail.com"
 - password: "sifat017"
 
@@ -147,6 +157,6 @@ npm run dev
 ```
 This will start the server and you can access the API at http://localhost:7094.
 
-### 5. Test the Application
+### 6. Test the Application
 
 Use Postman or any HTTP client to test the API endpoints.

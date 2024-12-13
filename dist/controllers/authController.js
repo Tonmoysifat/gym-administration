@@ -28,6 +28,12 @@ const register = (req, res, next) => __awaiter(void 0, void 0, void 0, function*
                 message: "You can't create admin profile. Please login if you are an admin",
             });
         }
+        else if (role === "Trainer") {
+            res.status(400).json({
+                success: false,
+                message: "Only admins can create Trainers",
+            });
+        }
         else {
             const hashedPassword = yield bcrypt_1.default.hash(password, 10);
             const userExists = yield user_model_1.User.findOne({ email });

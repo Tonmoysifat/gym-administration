@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { User } from "../models/user.model";
+import { User,IUser } from "../models/user.model";
 import { ISchedule, Schedule } from "../models/schedule.model";
+import bcrypt from 'bcrypt';;
+import { generateToken } from '../utils/generateToken';
 
 export const createSchedule = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
@@ -50,6 +52,41 @@ export const createSchedule = async (req: Request, res: Response, next: NextFunc
     }
 };
 
+export const createTrainers = async (req: Request, res: Response, next: NextFunction): Promise<void> =>{
+    try{
+        const { name, email, password, role } = req.body;
+        const user = req.headers;
+        if (user.role !== "Admin") {
+            res.status(403).json(
+                { "success": false,
+                    "message": "Unauthorized access.",
+                    "errorDetails": "You must be an admin to perform this action." });
+            return;
+        } else {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            const userExists:any = await User.findOne({ email });
+
+            if (userExists) {
+                res.status(400).json({ success: false, message: 'User already exists!' });
+                return;
+            }  else {
+                const user:any = await User.create({ name, email, password: hashedPassword, role } as IUser);
+                const token = generateToken(String(user._id), user.role);
+
+                res.status(201).json({
+                    success: true,
+                    message: 'User registered successfully',
+                    data: user,
+                    token
+                });
+                return;
+            }
+        }
+    }
+    catch (error) {
+        next(error)
+    }
+}
 export const getSchedules = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         const schedules = await Schedule.find()

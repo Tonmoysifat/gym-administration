@@ -14,6 +14,11 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
                 success: false,
                 message: "You can't create admin profile. Please login if you are an admin",
             });
+        } else if(role === "Trainer"){
+            res.status(400).json({
+                success: false,
+                message: "Only admins can create Trainers",
+            });
         }
 
         else {

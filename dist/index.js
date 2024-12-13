@@ -38,7 +38,7 @@ app.set("etag", false);
 app.use("/auth", auth_route_1.authRoute);
 app.use("/schedule", schedule_route_1.scheduleRoute);
 app.use("/booking", booking_route_1.BookingRoute);
-const PORT = 2084;
+const PORT = 7094;
 app.listen(PORT, function () {
     console.log(`back-end is running on http://localhost:${PORT}`);
 });

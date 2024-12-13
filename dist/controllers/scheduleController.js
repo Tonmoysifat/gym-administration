@@ -8,10 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTrainerSchedules = exports.getSchedules = exports.createSchedule = void 0;
+exports.getTrainerSchedules = exports.getSchedules = exports.createTrainers = exports.createSchedule = void 0;
 const user_model_1 = require("../models/user.model");
 const schedule_model_1 = require("../models/schedule.model");
+const bcrypt_1 = __importDefault(require("bcrypt"));
+;
+const generateToken_1 = require("../utils/generateToken");
 const createSchedule = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { date, startTime, endTime, trainerId } = req.body;
@@ -52,6 +58,41 @@ const createSchedule = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
     }
 });
 exports.createSchedule = createSchedule;
+const createTrainers = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { name, email, password, role } = req.body;
+        const user = req.headers;
+        if (user.role !== "Admin") {
+            res.status(403).json({ "success": false,
+                "message": "Unauthorized access.",
+                "errorDetails": "You must be an admin to perform this action." });
+            return;
+        }
+        else {
+            const hashedPassword = yield bcrypt_1.default.hash(password, 10);
+            const userExists = yield user_model_1.User.findOne({ email });
+            if (userExists) {
+                res.status(400).json({ success: false, message: 'User already exists!' });
+                return;
+            }
+            else {
+                const user = yield user_model_1.User.create({ name, email, password: hashedPassword, role });
+                const token = (0, generateToken_1.generateToken)(String(user._id), user.role);
+                res.status(201).json({
+                    success: true,
+                    message: 'User registered successfully',
+                    data: user,
+                    token
+                });
+                return;
+            }
+        }
+    }
+    catch (error) {
+        next(error);
+    }
+});
+exports.createTrainers = createTrainers;
 const getSchedules = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const schedules = yield schedule_model_1.Schedule.find()
