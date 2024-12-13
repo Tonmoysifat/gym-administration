@@ -50,7 +50,7 @@ The Gym Class Scheduling and Membership Management System is designed to streaml
    - `email`: email (required)
    - `password`: password (required)
    - `name`: name (required)
-   - `role`: Trainer | Trainee (For testing purposes add role value "Trainer" for creating Trainer profile but only admin create Trainer profile and add "Trainee" for creating Trainee profile) (required) <br>
+   - `role`: Trainer | Trainee (For testing purposes add role value "Trainer" for creating Trainer profile but only admin can create Trainer profile and add "Trainee" for creating Trainee profile) (required) <br>
 *For the successful request you will get a token in response, add this token to the Headers tab of the postman like token = "Your_Token""*
    
 ### 2. **POST request: Login
@@ -75,7 +75,7 @@ The Gym Class Scheduling and Membership Management System is designed to streaml
 ### 4. **POST request: Create Trainer
        With live link: https://gym-administration.onrender.com/schedule/create-trainer
        In localhost: http://localhost:7094/schedule/create-trainer
-- **Description**: Allows the admin to create a new Trainer.
+- **Description**: Only admin can create a new Trainer.
 - **Parameters**:
    - `email`: email (required)
    - `password`: password (required)
@@ -85,14 +85,14 @@ The Gym Class Scheduling and Membership Management System is designed to streaml
 ### 5. **GET request: Get all schedule 
        With live link: https://gym-administration.onrender.com/schedule/get-schedule
        In localhost: http://localhost:7094/schedule/get-schedule
-- **Description**: Allows the user to see available class schedule.
-- **Parameters**: no Parameters need just make a get request
+- **Description**: Allows the user to see available class schedules.
+- **Parameters**: no parameters need just make a get request
 
 ### 6. **GET request: Get trainer schedule 
        With live link: https://gym-administration.onrender.com/schedule/get-schedule-trainer
        In localhost: http://localhost:7094/schedule/get-schedule-trainer
 - **Description**: Allows the Trainers to see class schedules assigned to them. (For this Trainer has to log in to his account with his email & password)
-- **Parameters**: no Parameters need just make a get request
+- **Parameters**: no parameters need just make a get request
 
 ### 7. **POST request: Booking class
        With live link: https://gym-administration.onrender.com/booking/book-schedule
@@ -113,15 +113,18 @@ The Gym Class Scheduling and Membership Management System is designed to streaml
 ## Database Schema
 
 ### Trainee Model
-- user.model.ts. (For storing user information and his role)
+- user.model.ts. (For storing user information and their role)
 - schedule.model.ts. (For storing scheduled classes)
 - booking.model.ts.   (For storing booking information)
 
 ### Admin Credentials
- **POST /auth/login** <br>
-Please just login with this api end point for admin permission
-- email: "admin@gmail.com"
-- password: "sifat017"
+#### **POST request: Login
+       With live link: https://gym-administration.onrender.com/auth/login
+       In localhost: http://localhost:7094/auth/login
+Please just log in with these api end points for admin permission
+- **Parameters**:
+   - email: "admin@gmail.com"
+   - password: "sifat017"
 
 ### Instructions to Run Locally
 
@@ -174,7 +177,7 @@ npm run dev
 ```
 ### 6. Build the Application
 
-If anything is changed inside the src folder, then please build the application using command:
+If anything is changed inside the src folder, then build the application using command:
 
 ```bash
 npx tsc --build
