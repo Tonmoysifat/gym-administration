@@ -175,6 +175,7 @@ Once the dependencies are installed and the environment variables are set, start
 ```bash
 npm run dev
 ```
+This will start the server and you can access the API at http://localhost:7094.
 ### 6. Build the Application
 
 If anything is changed inside the src folder, then build the application using command:
@@ -183,7 +184,7 @@ If anything is changed inside the src folder, then build the application using c
 npx tsc --build
 ```
 
-This will start the server and you can access the API at http://localhost:7094.
+
 
 ### 7. Test the Application
 
